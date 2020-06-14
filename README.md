@@ -24,7 +24,7 @@ Or if for some reason you want to run it by yourself:
 1. Clone code to somewhere
 2. `import owobot`
 3. `owobot.Session(client_id, client_secret, user_agent)` takes three required arguments for read-only session.
-4. `owobot.GetPicSFW` - Returns URL of picture from SFW subreddits.
+4. `owobot.GetPicSFW` - Returns URL of picture from SFW subreddits.  
 4.1 `owobot.GetPicNSFW` - E-eh, i think you know it better.
 
 ### Reason of choosing some questionable solutions
