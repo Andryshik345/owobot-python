@@ -1,39 +1,35 @@
-# owobot-java
-[![Build Status](https://travis-ci.com/ASPIRINswag/owobot-java.svg?branch=master)](https://travis-ci.com/ASPIRINswag/owobot-java)
+# owobot-python
 
-An anime pics bot for Telegram, written on java, taking data from reddit.   
-Бот для телеграмма, присылающий аниме девочек, написанный на java, берущий данные из reddit.
+An anime pics bot ~~for Telegram~~ as universal module, written on ~~java~~python, which takes data from reddit and returns URL of picture.
+Бот ~~для телеграмма~~ написанный как универ-ый модуль, присылающий аниме девочек, написанный на ~~java~~python, берущий данные из reddit и возвращающий URL картинки.
 
-Bot link:  [@owopics_bot](https://t.me/owopics_bot)
+Original bot link ([by ASPIRINswag](https://github.com/ASPIRINswag/owobot-java)) :  [@owopics_bot](https://t.me/owopics_bot)
 
 ### Features
-* Multithreading
+* ~~Multi~~Singlethreading
 * Works great in group chats
 * Preverting timeout errors
-* Chat related NSFW settings
-* User related language settings (english and russian)
-* Can answer on `owo` and `uwu`
+* ~~Chat related NSFW settings~~ Always(almost) NSFW
+* ~~User related language settings (english and russian)~~ Feedbacks with URL or `False`
+* Cannot answer on `owo` and `uwu`
+* Returns only `.jpg` or `.png`, but you can edit the code for needed types by yourself
 
 ### How to use
 1. Go to [@owopics_bot](https://t.me/owopics_bot) and just use the bot!
+2. Or use as module in your project.
 
 Or if for some reason you want to run it by yourself:
 
-1. Clone code somewhere
-2. Install Java 14 and run `mvn package` or use Docker
-3. After first run it will create empty config file
-4. Fill the config
-5. Run again and enjoy
+0. Install `praw` with `pip` or somehow else.
+1. Clone code to somewhere
+2. `import owobot`
+3. `owobot.Session(client_id, client_secret, user_agent)` takes three required arguments for read-only session.
+4. `owobot.GetPicSFW` - Returns URL of picture from SFW subreddits.
+4.1 `owobot.GetPicNSFW` - E-eh, i think you know it better.
 
 ### Reason of choosing some questionable solutions
-1. I'm java newbie
-2. it was written with keeping in mind idea about implementation all features just with java, without anything outside like DB or something **BUT except** Tor proxy on host machine, cuz I'm russian and Telegram API is banned here. 
-
-Just add this line to /etc/tor/torrc on your host machine
-```
-HTTPTunnelPort 127.0.0.1:9030
-```
-Or delete everything about proxy from code ¯\\_(ツ)_/¯
+1. ~~I'm java newbie~~, although it's he, not me
+2. it was written with keeping in mind idea about implementation all features just with python, without anything outside like java crap or something like that, even without any proxy settings, cuz it's a module lol.
 
 ### TODO
-- [ ] Rewrite in haskell someday
+- [ ] Rewrite in YoptaScript someday
