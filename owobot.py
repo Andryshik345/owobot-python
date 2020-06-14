@@ -4,7 +4,7 @@ import random
 import praw, boards
 
 # Limits maximum posts count
-limit = 6
+LIMIT = 6
 
 def Session(client_id, client_secret, user_agent):
     global session
@@ -16,7 +16,7 @@ def GetPicSFW():
     if session:
         subreddit = session.subreddit(boards.SFW[random.randrange(len(boards.SFW) + 1)])
 
-        submission = subreddit.new(limit=limit)
+        submission = subreddit.new(limit=LIMIT)
         for s in submission:
             if ".jpg" in s.url or ".png" in s.url:
                 return s.url
@@ -30,7 +30,7 @@ def GetPicNSFW():
     if session:
         subreddit = session.subreddit(boards.NSFW[random.randrange(len(boards.NSFW) + 1)])
 
-        submission = subreddit.new(limit=limit)
+        submission = subreddit.new(limit=LIMIT)
         for s in submission:
             if ".jpg" in s.url or ".png" in s.url:
                 return s.url
