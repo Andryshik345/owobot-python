@@ -6,6 +6,9 @@ import praw, boards
 # Limits maximum posts count
 LIMIT = 6
 
+# Maximum random retries of submissions
+RETRYMAX = 3
+
 def Session(client_id, client_secret, user_agent):
     global session
     session = praw.Reddit(client_id=client_id,
@@ -13,29 +16,33 @@ def Session(client_id, client_secret, user_agent):
                           user_agent=user_agent)
 
 def GetPicSFW():
-    if session:
-        subreddit = session.subreddit(boards.SFW[random.randrange(len(boards.SFW) + 1)])
+    if not session:
+        return False
 
-        submission = subreddit.new(limit=LIMIT)
+    subreddit = session.subreddit(random.choice(boards.SFW))
+    
+    submission = subreddit.new(limit=LIMIT)
+    for i in range(0, RETRYMAX):
+        urls = []
         for s in submission:
             if ".jpg" in s.url or ".png" in s.url:
-                return s.url
-                break
-            else:
-                continue
-    else:
-        return False
-            
+                urls.append(s.url)
+        if not len(urls) is 0:
+            break
+    return random.choice(urls)
+
 def GetPicNSFW():
-    if session:
-        subreddit = session.subreddit(boards.NSFW[random.randrange(len(boards.NSFW) + 1)])
+    if not session:
+        return False
 
-        submission = subreddit.new(limit=LIMIT)
+    subreddit = session.subreddit(random.choice(boards.NSFW))
+    
+    submission = subreddit.new(limit=LIMIT)
+    for i in range(0, RETRYMAX):
+        urls = []
         for s in submission:
             if ".jpg" in s.url or ".png" in s.url:
-                return s.url
-                break
-            else:
-                continue
-    else:
-        return False
+                urls.append(s.url)
+        if not len(urls) is 0:
+            break
+    return random.choice(urls)
